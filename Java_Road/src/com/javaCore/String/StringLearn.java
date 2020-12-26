@@ -11,16 +11,19 @@ public class StringLearn {
     public static void main(String[] args){
         CountConsumeTime();
         CountStringBufferConsumeTime();
+        CountStringStringBuilderTime();
     }
     //+法方式
     public static String concatString1(String s1,String s2){
         return s1+s2;
     }
-    //concat方法
+    //concat方法：底层实现是使用StringBuder
     public static String concatString2(String s1,String s2){
         return s1.concat(s2);
     }
+
     //大量字符串拼接的时候问题：耗时间严重
+    //每次拼接需要创建一个新的字符串，然后把老的字符串添加到新的字符串，耗费内存高、性能低
     public static void CountConsumeTime(){
         String s = "0";
         long startTime = System.currentTimeMillis();
@@ -31,9 +34,20 @@ public class StringLearn {
         System.out.println("consume time is "+(endTime- startTime));
     }
 
-    //大量字符串使用的方法
+    //大量字符串使用的方法1:StringBuffer：线程安全
     public static void CountStringBufferConsumeTime(){
         StringBuffer sb = new StringBuffer();
+        long startTime = System.currentTimeMillis();
+        for (int i = 0; i < 100000; i++) {
+            sb.append(i);
+        }
+        long endTime = System.currentTimeMillis();
+        System.out.println("consume time is "+(endTime- startTime));
+    }
+
+    //大量字符串使用的方法2:StringBuider:非线程安全
+    public static void CountStringStringBuilderTime(){
+        StringBuilder sb = new StringBuilder("0");
         long startTime = System.currentTimeMillis();
         for (int i = 0; i < 100000; i++) {
             sb.append(i);
