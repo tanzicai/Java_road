@@ -1,5 +1,9 @@
 package com.javaCore.Array;
 
+import java.util.Arrays;
+
+import static java.util.Arrays.sort;
+
 public class Array {
     public static void main(String[] args){
         //数组创建
@@ -30,6 +34,19 @@ public class Array {
         int[] h,i,j[];= int[]h;   int i[];   int[][] j;
         */
 
+        //数组排序
+        int[] arr1 = {1,2,3,4,5,33,2,1,3,4,21,213,31};
+        String[] nam = new String[]{"Tom","Jane","Ai"};
+        sort(arr1);
+       sort(nam);
+        for (int num:
+             arr1) {
+            System.out.println(num);
+        }
+        for (String name:
+                nam) {
+            System.out.println(name);
+        }
 
     }
 }
